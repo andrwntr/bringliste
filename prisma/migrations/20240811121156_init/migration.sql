@@ -1,0 +1,19 @@
+-- CreateTable
+CREATE TABLE "BringList" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "name" TEXT NOT NULL,
+    "description" TEXT
+);
+
+-- CreateTable
+CREATE TABLE "ListItem" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    "author" TEXT NOT NULL,
+    "name" TEXT NOT NULL,
+    "listId" INTEGER NOT NULL,
+    CONSTRAINT "ListItem_listId_fkey" FOREIGN KEY ("listId") REFERENCES "BringList" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
