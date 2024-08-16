@@ -2,6 +2,8 @@
 	import { enhance } from '$app/forms';
 	import type { ListItem } from '$lib/models';
 	import type { SubmitFunction } from '@sveltejs/kit';
+	import { CircleX, Copy, CopyCheck } from 'lucide-svelte';
+	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 
 	export let data: PageData;
@@ -14,11 +16,29 @@
 
 	let author = '';
 	let itemName = '';
+	let copySuccess = false;
 
 	$: sortListItemsByAuthor(data?.data?.listItems);
 	$: listId = data?.data?.list?.id;
 	$: externalId = data?.data?.list?.externalId;
-	$: currentUrl = window.location.href;
+
+	onMount(() => {
+		currentUrl = window?.location?.href;
+	});
+
+	function copyCurrentUrlToClipboard() {
+		navigator.clipboard
+			.writeText(currentUrl)
+			.then(() => {
+				copySuccess = true;
+				setTimeout(() => {
+					copySuccess = false;
+				}, 675);
+			})
+			.catch((err) => {
+				console.error('Failed to copy text: ', err);
+			});
+	}
 
 	function sortListItemsByAuthor(listItems: ListItem[]) {
 		listItems.sort((a, b) => {
@@ -56,41 +76,64 @@
 	<div class="divider" />
 
 	<h2 class="text-lg font-semibold">Teile den Link mit deinen Freunden</h2>
-	<p>{currentUrl}</p>
+
+	<button class="btn btn-primary mt-2" on:click={copyCurrentUrlToClipboard}>
+		{#if copySuccess}
+			<CopyCheck /> Kopiert
+		{:else}
+			<Copy /> Kopieren
+		{/if}
+	</button>
 
 	<div class="divider" />
 
-	<div class="overflow-x-auto">
-		<table class="table">
-			<thead>
+	<table class="table table-fixed">
+		<thead>
+			<tr>
+				<th>Wer</th>
+				<th>Was</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each items as item (item.id)}
+				<form id="form-{item.id}" method="POST" action="?/deleteListItem" use:enhance></form>
 				<tr>
-					<th>Wer</th>
-					<th>Was</th>
-					<th></th>
+					<td class="hidden">
+						<input form="form-{item.id}" name="id" value={item.id} />
+						<input form="form-{item.id}" name="externalId" value={externalId} />
+					</td>
+					<td>
+						<input
+							form="form-{item.id}"
+							name="author"
+							disabled
+							readonly
+							class="hidden"
+							bind:value={item.author}
+						/>
+						<p class="break-words">{item.author}</p>
+					</td>
+					<td>
+						<input
+							form="form-{item.id}"
+							name="name"
+							disabled
+							readonly
+							class="hidden"
+							bind:value={item.name}
+						/>
+						<p class="break-words">{item.name}</p>
+					</td>
+					<td>
+						<button form="form-{item.id}" class="btn btn-ghost text-red-600" type="submit">
+							<CircleX /> Löschen
+						</button>
+					</td>
 				</tr>
-			</thead>
-			<tbody>
-				{#each items as item (item.id)}
-					<form id="form-{item.id}" method="POST" action="?/deleteListItem" use:enhance></form>
-					<tr>
-						<td class="hidden">
-							<input form="form-{item.id}" name="id" value={item.id} />
-							<input form="form-{item.id}" name="externalId" value={externalId} />
-						</td>
-						<td>
-							<input form="form-{item.id}" name="author" bind:value={item.author} />
-						</td>
-						<td><input form="form-{item.id}" name="name" bind:value={item.name} /></td>
-						<td>
-							<button form="form-{item.id}" class="btn btn-ghost text-red-600" type="submit">
-								Löschen
-							</button>
-						</td>
-					</tr>
-				{/each}
-			</tbody>
-		</table>
-	</div>
+			{/each}
+		</tbody>
+	</table>
 
 	<div class="divider" />
 

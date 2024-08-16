@@ -5,17 +5,20 @@
 	import '../global.scss';
 
 	let currentTheme = '';
+	let isIOS = false;
 
 	onMount(() => {
 		if (typeof window !== 'undefined') {
-			const theme = window.localStorage.getItem('theme') || 'light';
+			const theme = window.localStorage.getItem('theme') || 'fantasy';
 			document.documentElement.setAttribute('data-theme', theme);
 			currentTheme = theme;
+
+			isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 		}
 	});
 
 	function switchTheme(event: Event) {
-		const theme = currentTheme === 'light' ? 'business' : 'light';
+		const theme = currentTheme === 'fantasy' ? 'sunset' : 'fantasy';
 		window.localStorage.setItem('theme', theme);
 		document.documentElement.setAttribute('data-theme', theme);
 		currentTheme = theme;
@@ -28,13 +31,15 @@
 			<a class="btn btn-ghost text-xl" href="/">Bringliste</a>
 		</nav>
 		<div class="flex-none">
-			<button class="btn btn-neutral" on:click={switchTheme}>
-				{#if currentTheme === 'light'}
-					<Moon />
-				{:else}
-					<Sun />
-				{/if}
-			</button>
+			{#if !isIOS}
+				<button class="btn btn-neutral" on:click={switchTheme}>
+					{#if currentTheme === 'fantasy'}
+						<Moon />
+					{:else}
+						<Sun />
+					{/if}
+				</button>
+			{/if}
 		</div>
 	</div>
 	<div class="content p-4 flex flex-col items-center">

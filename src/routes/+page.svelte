@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 
-	function navgiateToCreateList() {
+	function navigateToCreateList() {
 		goto('/liste/erstellen');
 	}
 </script>
@@ -19,7 +19,7 @@
 
 			<p class="pb-6 pt-4"><strong>Ohne Anmeldung oder sonstigen Schnickschnack.</strong></p>
 
-			<button class="btn btn-primary btn-lg" on:click={navgiateToCreateList}>Liste erstellen</button
+			<button class="btn btn-primary btn-lg" on:click={navigateToCreateList}>Liste erstellen</button
 			>
 		</div>
 	</div>
