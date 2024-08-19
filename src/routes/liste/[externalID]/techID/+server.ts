@@ -1,6 +1,8 @@
 import { prisma } from '$lib/prisma';
 import type { RequestHandler } from './$types';
 
+export const prerender = false;
+
 export const GET: RequestHandler = async ({ params }) => {
 	const externalId = params.externalID;
 

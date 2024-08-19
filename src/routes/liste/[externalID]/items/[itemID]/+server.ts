@@ -1,6 +1,8 @@
 import { prisma } from '$lib/prisma';
 import type { RequestHandler } from './delete/$types';
 
+export const prerender = false;
+
 export const DELETE: RequestHandler = async ({ params, fetch }) => {
 	const itemID = params.itemID;
 	const externalID = params.externalID;

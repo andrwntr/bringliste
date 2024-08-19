@@ -1,6 +1,8 @@
 import { fail } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
+export const prerender = false;
+
 export const load = (async ({ fetch, params }) => {
 	const externalID = params.externalID;
 	const response = await fetch(`/liste/${externalID}`, { method: 'GET' });
