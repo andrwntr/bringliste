@@ -75,7 +75,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             cd /home/andrewinter/.nvm
-            ./nvm.sh
+            source /home/andrewinter/.nvm/nvm.sh
             cd /home/andrewinter/serve
             echo $PATH
             which pm2
