@@ -74,9 +74,10 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            source ~/.bashrc
-            echo $PATH
+            cd /home/andrewinter/.nvm
+            ./nvm.sh
             cd /home/andrewinter/serve
+            echo $PATH
             which pm2
             ./stop.sh
 
