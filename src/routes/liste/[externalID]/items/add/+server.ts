@@ -1,8 +1,6 @@
 import { prisma } from '$lib/prisma';
 import type { RequestHandler } from './$types';
 
-export const prerender = false;
-
 export const POST: RequestHandler = async ({ request }) => {
 	const requestData = await request.json();
 
