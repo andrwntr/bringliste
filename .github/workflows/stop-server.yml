@@ -2,7 +2,7 @@ name: StopServer
 
 on:
   workflow_run:
-    workflows: ['Deploy']
+    workflows: ['BuildAndDeploy']
     types:
       - completed
 
