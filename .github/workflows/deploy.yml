@@ -24,11 +24,14 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: List directory contents
+        run: ls -la
+
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: build
-          path: build/
+          path: build
 
   deploy:
     needs: build
