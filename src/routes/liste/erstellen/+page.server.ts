@@ -2,6 +2,8 @@ import { prisma } from '$lib/prisma.js';
 import { fail } from '@sveltejs/kit';
 import { v4 as uuid } from 'uuid';
 
+export const prerender = false;
+
 export const actions = {
 	default: async ({ request, fetch }) => {
 		const formData = await request.formData();
