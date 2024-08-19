@@ -48,3 +48,4 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           source: 'build/*'
           target: '/home/andrewinter/test'
+          debug: true
