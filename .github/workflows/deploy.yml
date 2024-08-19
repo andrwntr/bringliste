@@ -75,6 +75,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             cd /home/andrewinter/serve
+            export PATH=/home/andrewinter/.nvm/versions/node/v20.15.1/bin:$PATH
             pwd
             which pm2
             pm2 stop bring
