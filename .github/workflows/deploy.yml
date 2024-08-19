@@ -74,7 +74,9 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
+            source ~/.bashrc
             cd /home/andrewinter/serve
+            which pm2
             ./stop.sh
 
       - name: Generate production dependencies
