@@ -5,15 +5,12 @@
 	import '../global.scss';
 
 	let currentTheme = '';
-	let isIOS = false;
 
 	onMount(() => {
 		if (typeof window !== 'undefined') {
 			const theme = window.localStorage.getItem('theme') || 'fantasy';
 			document.documentElement.setAttribute('data-theme', theme);
 			currentTheme = theme;
-
-			isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
 		}
 	});
 
@@ -31,15 +28,13 @@
 			<a class="btn btn-ghost text-xl" href="/">Bringliste</a>
 		</nav>
 		<div class="flex-none">
-			{#if !isIOS}
-				<button class="btn btn-neutral" on:click={switchTheme}>
-					{#if currentTheme === 'fantasy'}
-						<Moon />
-					{:else}
-						<Sun />
-					{/if}
-				</button>
-			{/if}
+			<button class="btn btn-neutral" on:click={switchTheme}>
+				{#if currentTheme === 'fantasy'}
+					<Moon />
+				{:else}
+					<Sun />
+				{/if}
+			</button>
 		</div>
 	</div>
 	<div class="content p-4 flex flex-col items-center">
