@@ -113,7 +113,7 @@ jobs:
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
             cd /home/andrewinter/serve
-            ./start.sh
+            pm2 start start.sh --name "BringlisteApp"
 
       - name: Check server status
         uses: appleboy/ssh-action@master
