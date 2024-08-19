@@ -61,7 +61,6 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           source: 'build/'
           target: '/home/andrewinter/serve'
-          rm: true
 
   startAndStop:
     needs: deploy
