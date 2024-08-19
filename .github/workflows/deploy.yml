@@ -74,8 +74,8 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
-            cd /home/andrewinter/.nvm
-            source /home/andrewinter/.nvm/nvm.sh
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             cd /home/andrewinter/serve
             echo $PATH
             which pm2
