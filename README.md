@@ -1,3 +1,5 @@
+![BuildAndDeploy Workflow](https://github.com/andrwntr/bringliste/actions/workflows/bringliste.yml/badge.svg)
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
