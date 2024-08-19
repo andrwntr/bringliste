@@ -75,6 +75,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           script: |
             source ~/.bashrc
+            echo $PATH
             cd /home/andrewinter/serve
             which pm2
             ./stop.sh
