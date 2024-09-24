@@ -14,7 +14,7 @@
 			<p class="pt-6">
 				Du kennst das Problem: Du möchtest eine Party verantstalten und jeder soll etwas mitbringen?
 				Aber es gibt kein vernünftiges Tool, um das zu organisieren? Dann bist du hier genau
-				richtig! Erstelle eine Bringliste und lade deine Freunde ein, sich einzutragen.
+				richtig! Erstelle eine Bringliste und lade deine Freunde ein.
 			</p>
 
 			<p class="pb-6 pt-4"><strong>Ohne Anmeldung oder sonstigen Schnickschnack.</strong></p>
